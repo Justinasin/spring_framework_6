@@ -1,19 +1,14 @@
 package com.example.spring_framework_core.controllers;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import com.example.spring_framework_core.services.GreetingServiceImpl;
-
+@SpringBootTest
 class ConstructorInjectedControllerTest {
 
-    ConstructorInjectedController constructorInjectedController;
-
-    @BeforeEach
-    void setUp() {
-        constructorInjectedController = new ConstructorInjectedController(new GreetingServiceImpl());
-
-    }
+    @Autowired
+    private ConstructorInjectedController constructorInjectedController;
 
     @Test
     void sayHello() {
