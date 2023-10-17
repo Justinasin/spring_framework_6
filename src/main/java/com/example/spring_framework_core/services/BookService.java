@@ -11,4 +11,5 @@ public interface BookService {
 
     Book getBookById(UUID id);
 
+    Book insertBook(Book book);
 }

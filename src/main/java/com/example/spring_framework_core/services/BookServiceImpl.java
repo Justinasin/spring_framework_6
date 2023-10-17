@@ -1,6 +1,7 @@
 package com.example.spring_framework_core.services;
 
-import java.time.LocalDateTime;
+import static java.time.LocalDateTime.now;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,7 @@ public class BookServiceImpl implements BookService {
                 .author("Author1")
                 .title("Title1")
                 .pages(100)
-                .created(LocalDateTime.now())
+                .createdDate(now())
                 .build();
 
         Book book2 = Book.builder()
@@ -34,7 +35,7 @@ public class BookServiceImpl implements BookService {
                 .author("Author2")
                 .title("Title2")
                 .pages(200)
-                .created(LocalDateTime.now())
+                .createdDate(now())
                 .build();
 
         Book book3 = Book.builder()
@@ -42,7 +43,7 @@ public class BookServiceImpl implements BookService {
                 .author("Author3")
                 .title("Title3")
                 .pages(300)
-                .created(LocalDateTime.now())
+                .createdDate(now())
                 .build();
 
         bookMap.put(book1.getId(), book1);
@@ -60,5 +61,21 @@ public class BookServiceImpl implements BookService {
         log.debug("Get Book by Id - in service. Id: " + id.toString());
 
         return bookMap.get(id);
+    }
+
+    @Override
+    public Book insertBook(Book book) {
+        Book savedBook = Book.builder()
+                .id(UUID.randomUUID())
+                .createdDate(now())
+                .updatedDate(now())
+                .title(book.getTitle())
+                .author(book.getAuthor())
+                .pages(book.getPages())
+                .build();
+
+        bookMap.put(savedBook.getId(), savedBook);
+
+        return savedBook;
     }
 }
