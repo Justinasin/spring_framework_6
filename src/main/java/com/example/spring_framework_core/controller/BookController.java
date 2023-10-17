@@ -3,6 +3,8 @@ package com.example.spring_framework_core.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,17 +16,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @RestController
+@RequestMapping("/api/v1/book")
 public class BookController {
 
     private final BookService bookService;
 
-    @RequestMapping("/api/v1/book")
+    @GetMapping()
     public List<Book> listBooks() {
         return bookService.listBooks();
     }
 
-    @RequestMapping("/api/v1/book/{bookId}")
-    public Book getBookById(UUID bookId) {
+    @GetMapping(value = "/{bookId}")
+    public Book getBookById(@PathVariable("bookId") UUID bookId) {
 
         log.debug("Get Book by Id - in controller");
 
