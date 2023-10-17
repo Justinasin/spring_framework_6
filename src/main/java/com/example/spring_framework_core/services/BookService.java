@@ -12,4 +12,6 @@ public interface BookService {
     Book getBookById(UUID id);
 
     Book insertBook(Book book);
+
+    void updateBook(UUID bookId, Book book);
 }
