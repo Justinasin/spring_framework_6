@@ -26,7 +26,7 @@ public class BookController {
         return bookService.listBooks();
     }
 
-    @GetMapping(value = "/{bookId}")
+    @GetMapping(value = "{bookId}")
     public Book getBookById(@PathVariable("bookId") UUID bookId) {
 
         log.debug("Get Book by Id - in controller");
