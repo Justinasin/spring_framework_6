@@ -3,6 +3,7 @@ package com.example.spring_framework_core.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +43,9 @@ public class BookController {
     public ResponseEntity insertBook(@RequestBody Book book) {
         Book insertedBook = bookService.insertBook(book);
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Location", String.format("/api/v1/book - %s", insertedBook.getId()));
+
+        return new ResponseEntity(httpHeaders, HttpStatus.CREATED);
     }
 }
